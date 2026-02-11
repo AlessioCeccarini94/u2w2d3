@@ -1,10 +1,18 @@
 package alessioceccarini.u2w2d3.payloads;
 
-import org.apache.catalina.User;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.util.UUID;
+
+@Getter
+@Setter
+@ToString
 public class BlogPayload {
+	private String category;
 	private String title;
 	private String content;
 	private int readingTime;
-	private User authorId;
+	private UUID authorId;
 }

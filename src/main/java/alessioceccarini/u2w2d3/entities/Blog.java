@@ -3,6 +3,7 @@ package alessioceccarini.u2w2d3.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
@@ -11,6 +12,9 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 public class Blog {
+
+	Random random = new Random();
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@Setter(AccessLevel.NONE)
@@ -24,10 +28,10 @@ public class Blog {
 	@JoinColumn(name = "author_id")
 	private Author authorId;
 
-	public Blog(String category, String title, String cover, String content, int readingTime, Author authorId) {
+	public Blog(String category, String title, String content, int readingTime, Author authorId) {
 		this.category = category;
 		this.title = title;
-		this.cover = cover;
+		this.cover = "https://www.placebaer.com/" + random.nextInt(100, 400) + "/" + random.nextInt(100, 400);
 		this.content = content;
 		this.readingTime = readingTime;
 		this.authorId = authorId;

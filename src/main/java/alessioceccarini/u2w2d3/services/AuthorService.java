@@ -28,7 +28,7 @@ public class AuthorService {
 
 	// GET ALL AUTHORS AND ADD PAGINATION
 	public Page<Author> findAll(int page, int size, String sortBy) {
-		if (page < 0) page = 1;
+		if (page < 0) page = 0;
 		if (size < 0 || size > 150) size = 10;
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
 		return this.authorRepository.findAll(pageable);

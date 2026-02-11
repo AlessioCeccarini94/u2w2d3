@@ -24,7 +24,7 @@ public class AuthorController {
 	//------------------------------------ G E T ----------------------------------------------
 
 	@GetMapping
-	public Page<Author> getAuthors(@RequestParam(defaultValue = "1") int page,
+	public Page<Author> getAuthors(@RequestParam(defaultValue = "0") int page,
 								   @RequestParam(defaultValue = "10") int size,
 								   @RequestParam(defaultValue = "lastName") String orderBy) {
 		return this.authorService.findAll(page, size, orderBy);

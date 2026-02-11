@@ -2,11 +2,10 @@ package alessioceccarini.u2w2d3.cotrollers;
 
 
 import alessioceccarini.u2w2d3.entities.Blog;
-import alessioceccarini.u2w2d3.repositories.BlogRepository;
+import alessioceccarini.u2w2d3.payloads.BlogPayload;
+import alessioceccarini.u2w2d3.services.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/blogs")
 public class BlogController {
 
-	private final BlogRepository blogRepository;
+	private final BlogService blogService;
 
 	@Autowired
-	public BlogController(BlogRepository blogRepository) {
-		this.blogRepository = blogRepository;
+	public BlogController(BlogService blogService) {
+		this.blogService = blogService;
+
 	}
 
 	//------------------------------------ G E T ----------------------------------------------
@@ -28,13 +28,13 @@ public class BlogController {
 	public Page<Blog> getBlogs(@RequestParam(defaultValue = "0") int page,
 							   @RequestParam(defaultValue = "10") int size,
 							   @RequestParam(defaultValue = "title") String title) {
-		return this.blogRepository.findAll(PageRequest.of(page, size, Sort.by(title).ascending()));
+		return this.blogService.findAll(page, size, title);
 	}
 
 	//------------------------------------ P O S T  ----------------------------------------------
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Blog save(@RequestBody Blog blog) {
-		return this.blogRepository.save(blog);
+	public Blog saveBlog(@RequestBody BlogPayload blogPayload) {
+		return this.blogService.saveBlog(blogPayload);
 	}
 }
