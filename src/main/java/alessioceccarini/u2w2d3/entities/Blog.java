@@ -22,14 +22,14 @@ public class Blog {
 	private int readingTime;
 	@ManyToOne
 	@JoinColumn(name = "author_id")
-	private Author author;
+	private Author authorId;
 
-	public Blog(String category, String title, String cover, String content, int readingTime, Author author) {
+	public Blog(String category, String title, String cover, String content, int readingTime, Author authorId) {
 		this.category = category;
 		this.title = title;
 		this.cover = cover;
 		this.content = content;
 		this.readingTime = readingTime;
-		this.author = author;
+		this.authorId = authorId;
 	}
 }
