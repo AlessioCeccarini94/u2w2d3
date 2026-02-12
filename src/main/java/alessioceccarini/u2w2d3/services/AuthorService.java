@@ -11,8 +11,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 public class AuthorService {
@@ -35,6 +37,10 @@ public class AuthorService {
 		return this.authorRepository.findAll(pageable);
 	}
 
+	public Author findAuthorById(UUID authorId) {
+		return this.authorRepository.findById(authorId).orElseThrow(RuntimeException::new);
+	}
+
 	//------------------------------------ P O S T ----------------------------------------------
 
 	// ADD NEW AUTHOR AND CHECK EMAIL IS NOT USED YET
@@ -48,5 +54,16 @@ public class AuthorService {
 			throw new NotAdultException("The author's birth date is younger than 18 years old");
 		} else
 			return this.authorRepository.save(newAuthor);
+	}
+
+	//------------------------------------- P U T  ----------------------------------------------
+	public Author updateAuthor(UUID authorId, @RequestBody AuthorPayload authorPayload) {
+		Author author = this.authorRepository.findById(authorId).orElseThrow(RuntimeException::new);
+		authorPayload.setFirstName(authorPayload.getFirstName());
+		authorPayload.setLastName(authorPayload.getLastName());
+		authorPayload.setEmail(authorPayload.getEmail());
+		authorPayload.setBirthDate(authorPayload.getBirthDate());
+		return authorRepository.save(author);
+
 	}
 }

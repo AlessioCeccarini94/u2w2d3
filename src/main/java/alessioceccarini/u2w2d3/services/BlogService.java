@@ -56,4 +56,21 @@ public class BlogService {
 		);
 		return this.blogRepository.save(newBlog);
 	}
+
+	//---------------------------------------- P U T  ----------------------------------------------
+	public Blog updateBlog(UUID id, BlogPayload blogPayload) {
+		Blog blog = this.findById(id);
+		blog.setTitle(blogPayload.getTitle());
+		blog.setContent(blogPayload.getContent());
+		blog.setReadingTime(blogPayload.getReadingTime());
+		blog.setCategory(blogPayload.getCategory());
+		return this.blogRepository.save(blog);
+	}
+
+	//----------------------------------- D E L E T E  ----------------------------------------------
+
+	public void deleteBlog(UUID id) {
+		this.blogRepository.deleteById(id);
+	}
+
 }

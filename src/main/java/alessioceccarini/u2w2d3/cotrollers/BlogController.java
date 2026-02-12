@@ -34,7 +34,7 @@ public class BlogController {
 		return this.blogService.findAll(page, size, orderBy);
 	}
 
-	@GetMapping
+	@GetMapping("/{userId}")
 	public Blog getBlogs(@RequestParam(required = false) UUID authorId) {
 		if (authorId != null) return blogService.findById(authorId);
 		else throw new RuntimeException();
@@ -45,5 +45,21 @@ public class BlogController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Blog saveBlog(@RequestBody BlogPayload blogPayload) {
 		return this.blogService.saveBlog(blogPayload);
+	}
+
+	//------------------------------------- P U T  ----------------------------------------------
+
+	@PutMapping("/{blogId}")
+	public Blog findAndUpdate(@PathVariable UUID blogId, @RequestBody BlogPayload body) {
+		return blogService.updateBlog(blogId, body);
+	}
+
+	//----------------------------------- D E L E T E  ----------------------------------------------
+
+
+	@DeleteMapping("/{blogId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void findAndDelete(@PathVariable UUID blogId) {
+		blogService.deleteBlog(blogId);
 	}
 }

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping("authors")
@@ -35,5 +37,20 @@ public class AuthorController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Author saveAuthor(@RequestBody AuthorPayload authorPayload) {
 		return this.authorService.save(authorPayload);
+	}
+
+	//------------------------------------- P U T  ----------------------------------------------
+
+	@PutMapping("/{userId}")
+	public Author updateAuthor(@PathVariable UUID authorId, @RequestBody AuthorPayload authorPayload) {
+		return authorService.updateAuthor(authorId, authorPayload);
+	}
+
+	//----------------------------------- D E L E T E  ----------------------------------------------
+
+	@DeleteMapping("/{user/id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAuthor(@PathVariable UUID authorId) {
+		authorService.findAuthorById(authorId);
 	}
 }
