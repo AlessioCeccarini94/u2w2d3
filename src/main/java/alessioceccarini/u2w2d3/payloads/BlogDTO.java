@@ -1,13 +1,13 @@
 package alessioceccarini.u2w2d3.payloads;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.UUID;
 
 public record BlogDTO(
-		@NotNull(message = "insert category")
+		@NotBlank(message = "insert category")
 		String category,
-		@NotNull(message = "title required")
+		@NotBlank(message = "title required")
 		String title,
 		String content,
 		int readingTime,

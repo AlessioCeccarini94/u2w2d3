@@ -5,6 +5,7 @@ import alessioceccarini.u2w2d3.entities.Author;
 import alessioceccarini.u2w2d3.payloads.AuthorDTO;
 import alessioceccarini.u2w2d3.payloads.AuthorPayload;
 import alessioceccarini.u2w2d3.services.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class AuthorController {
 	//------------------------------------ P O S T  ----------------------------------------------
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Author saveAuthor(@RequestBody AuthorDTO authorPayload) {
+	public Author saveAuthor(@RequestBody @Valid AuthorDTO authorPayload) {
 		return this.authorService.save(authorPayload);
 	}
 

@@ -1,18 +1,23 @@
 package alessioceccarini.u2w2d3.payloads;
 
 
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public record AuthorDTO(
-		@NotNull(message = "first name required")
+		@NotBlank(message = "first name required")
+		@Size(min = 3, max = 50)
 		String firstName,
-		@NotNull(message = "last name required")
+		@NotBlank(message = "last name required")
+		@Size(min = 3, max = 50)
 		String lastName,
-		@NotNull(message = "insert a valid email")
+		@NotBlank(message = "insert a valid email")
+		@Email
 		String email,
-		@Min(1916)
+		@NotNull
 		LocalDate birthDate) {
 }

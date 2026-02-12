@@ -4,6 +4,7 @@ package alessioceccarini.u2w2d3.cotrollers;
 import alessioceccarini.u2w2d3.entities.Blog;
 import alessioceccarini.u2w2d3.payloads.BlogPayload;
 import alessioceccarini.u2w2d3.services.BlogService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class BlogController {
 	//------------------------------------ P O S T  ----------------------------------------------
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Blog saveBlog(@RequestBody BlogPayload blogPayload) {
+	public Blog saveBlog(@RequestBody @Valid BlogPayload blogPayload) {
 		return this.blogService.saveBlog(blogPayload);
 	}
 
