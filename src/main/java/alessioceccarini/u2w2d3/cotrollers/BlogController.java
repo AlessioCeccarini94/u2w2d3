@@ -2,6 +2,7 @@ package alessioceccarini.u2w2d3.cotrollers;
 
 
 import alessioceccarini.u2w2d3.entities.Blog;
+import alessioceccarini.u2w2d3.payloads.BlogDTO;
 import alessioceccarini.u2w2d3.payloads.BlogPayload;
 import alessioceccarini.u2w2d3.services.BlogService;
 import jakarta.validation.Valid;
@@ -44,7 +45,7 @@ public class BlogController {
 	//------------------------------------ P O S T  ----------------------------------------------
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Blog saveBlog(@RequestBody @Valid BlogPayload blogPayload) {
+	public Blog saveBlog(@RequestBody @Valid BlogDTO blogPayload) {
 		return this.blogService.saveBlog(blogPayload);
 	}
 

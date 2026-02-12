@@ -3,6 +3,7 @@ package alessioceccarini.u2w2d3.services;
 import alessioceccarini.u2w2d3.entities.Author;
 import alessioceccarini.u2w2d3.entities.Blog;
 import alessioceccarini.u2w2d3.exceptions.NotFoundEception;
+import alessioceccarini.u2w2d3.payloads.BlogDTO;
 import alessioceccarini.u2w2d3.payloads.BlogPayload;
 import alessioceccarini.u2w2d3.repositories.AuthorRepository;
 import alessioceccarini.u2w2d3.repositories.BlogRepository;
@@ -45,13 +46,13 @@ public class BlogService {
 	}
 	//------------------------------------ P O S T ----------------------------------------------
 
-	public Blog saveBlog(BlogPayload blogPayload) {
-		Author author = this.authorRepository.findById(blogPayload.getAuthorId()).orElseThrow(() -> new NotFoundEception("Author not found"));
+	public Blog saveBlog(BlogDTO blogPayload) {
+		Author author = this.authorRepository.findById(blogPayload.authorId()).orElseThrow(() -> new NotFoundEception("Author not found"));
 		Blog newBlog = new Blog(
-				blogPayload.getCategory(),
-				blogPayload.getTitle(),
-				blogPayload.getContent(),
-				blogPayload.getReadingTime(),
+				blogPayload.category(),
+				blogPayload.title(),
+				blogPayload.content(),
+				blogPayload.readingTime(),
 				author
 		);
 		return this.blogRepository.save(newBlog);
