@@ -2,7 +2,7 @@ package alessioceccarini.u2w2d3.services;
 
 import alessioceccarini.u2w2d3.entities.Author;
 import alessioceccarini.u2w2d3.entities.Blog;
-import alessioceccarini.u2w2d3.exceptions.AlreadyUsedException;
+import alessioceccarini.u2w2d3.exceptions.NotFoundEception;
 import alessioceccarini.u2w2d3.payloads.BlogPayload;
 import alessioceccarini.u2w2d3.repositories.AuthorRepository;
 import alessioceccarini.u2w2d3.repositories.BlogRepository;
@@ -41,12 +41,12 @@ public class BlogService {
 	}
 
 	public Blog findById(UUID id) {
-		return blogRepository.findById(id).orElseThrow(() -> new AlreadyUsedException("nknk"));
+		return blogRepository.findById(id).orElseThrow(() -> new NotFoundEception("blog not found"));
 	}
 	//------------------------------------ P O S T ----------------------------------------------
 
 	public Blog saveBlog(BlogPayload blogPayload) {
-		Author author = this.authorRepository.findById(blogPayload.getAuthorId()).orElseThrow(() -> new RuntimeException("Author not found"));
+		Author author = this.authorRepository.findById(blogPayload.getAuthorId()).orElseThrow(() -> new NotFoundEception("Author not found"));
 		Blog newBlog = new Blog(
 				blogPayload.getCategory(),
 				blogPayload.getTitle(),

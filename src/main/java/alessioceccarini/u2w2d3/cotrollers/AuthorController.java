@@ -2,6 +2,7 @@ package alessioceccarini.u2w2d3.cotrollers;
 
 
 import alessioceccarini.u2w2d3.entities.Author;
+import alessioceccarini.u2w2d3.payloads.AuthorDTO;
 import alessioceccarini.u2w2d3.payloads.AuthorPayload;
 import alessioceccarini.u2w2d3.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,20 +36,20 @@ public class AuthorController {
 	//------------------------------------ P O S T  ----------------------------------------------
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Author saveAuthor(@RequestBody AuthorPayload authorPayload) {
+	public Author saveAuthor(@RequestBody AuthorDTO authorPayload) {
 		return this.authorService.save(authorPayload);
 	}
 
 	//------------------------------------- P U T  ----------------------------------------------
 
-	@PutMapping("/{userId}")
+	@PutMapping("/{authorsId}")
 	public Author updateAuthor(@PathVariable UUID authorId, @RequestBody AuthorPayload authorPayload) {
 		return authorService.updateAuthor(authorId, authorPayload);
 	}
 
 	//----------------------------------- D E L E T E  ----------------------------------------------
 
-	@DeleteMapping("/{user/id}")
+	@DeleteMapping("/{authorsid}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteAuthor(@PathVariable UUID authorId) {
 		authorService.findAuthorById(authorId);
