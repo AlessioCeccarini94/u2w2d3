@@ -2,6 +2,7 @@ package alessioceccarini.u2w2d3.services;
 
 import alessioceccarini.u2w2d3.entities.Author;
 import alessioceccarini.u2w2d3.entities.Blog;
+import alessioceccarini.u2w2d3.exceptions.AlreadyUsedException;
 import alessioceccarini.u2w2d3.payloads.BlogPayload;
 import alessioceccarini.u2w2d3.repositories.AuthorRepository;
 import alessioceccarini.u2w2d3.repositories.BlogRepository;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 
 @Service
@@ -37,6 +40,9 @@ public class BlogService {
 		return this.blogRepository.findAll(pageable);
 	}
 
+	public Blog findById(UUID id) {
+		return blogRepository.findById(id).orElseThrow(() -> new AlreadyUsedException("nknk"));
+	}
 	//------------------------------------ P O S T ----------------------------------------------
 
 	public Blog saveBlog(BlogPayload blogPayload) {

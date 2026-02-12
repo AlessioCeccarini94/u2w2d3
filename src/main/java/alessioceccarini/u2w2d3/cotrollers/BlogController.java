@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/blogs")
@@ -20,6 +22,7 @@ public class BlogController {
 	public BlogController(BlogService blogService) {
 		this.blogService = blogService;
 
+
 	}
 
 	//------------------------------------ G E T ----------------------------------------------
@@ -29,6 +32,12 @@ public class BlogController {
 							   @RequestParam(defaultValue = "10") int size,
 							   @RequestParam(defaultValue = "title") String orderBy) {
 		return this.blogService.findAll(page, size, orderBy);
+	}
+
+	@GetMapping
+	public Blog getBlogs(@RequestParam(required = false) UUID authorId) {
+		if (authorId != null) return blogService.findById(authorId);
+		else throw new RuntimeException();
 	}
 
 	//------------------------------------ P O S T  ----------------------------------------------
