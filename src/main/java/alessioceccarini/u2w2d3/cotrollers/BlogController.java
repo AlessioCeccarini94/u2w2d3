@@ -27,8 +27,8 @@ public class BlogController {
 	@GetMapping
 	public Page<Blog> getBlogs(@RequestParam(defaultValue = "0") int page,
 							   @RequestParam(defaultValue = "10") int size,
-							   @RequestParam(defaultValue = "title") String title) {
-		return this.blogService.findAll(page, size, title);
+							   @RequestParam(defaultValue = "title") String orderBy) {
+		return this.blogService.findAll(page, size, orderBy);
 	}
 
 	//------------------------------------ P O S T  ----------------------------------------------

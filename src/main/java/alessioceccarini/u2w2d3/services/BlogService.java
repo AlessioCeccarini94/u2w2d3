@@ -32,6 +32,7 @@ public class BlogService {
 	public Page<Blog> findAll(int page, int size, String sortBy) {
 		if (page < 0) page = 0;
 		if (size < 0 || size > 100) size = 10;
+		if (sortBy == null) sortBy = "title";
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
 		return this.blogRepository.findAll(pageable);
 	}

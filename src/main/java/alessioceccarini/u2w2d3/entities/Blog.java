@@ -26,7 +26,7 @@ public class Blog {
 	private int readingTime;
 	@ManyToOne
 	@JoinColumn(name = "author_id")
-	private Author authorId;
+	private Author author;
 
 	public Blog(String category, String title, String content, int readingTime, Author authorId) {
 		this.category = category;
@@ -34,6 +34,6 @@ public class Blog {
 		this.cover = "https://www.placebaer.com/" + random.nextInt(100, 400) + "/" + random.nextInt(100, 400);
 		this.content = content;
 		this.readingTime = readingTime;
-		this.authorId = authorId;
+		this.author = author;
 	}
 }

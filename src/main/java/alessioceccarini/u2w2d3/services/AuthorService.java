@@ -30,6 +30,7 @@ public class AuthorService {
 	public Page<Author> findAll(int page, int size, String sortBy) {
 		if (page < 0) page = 0;
 		if (size < 0 || size > 150) size = 10;
+		if (sortBy == null) sortBy = "title";
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
 		return this.authorRepository.findAll(pageable);
 	}
