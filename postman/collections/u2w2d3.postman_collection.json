@@ -1,0 +1,127 @@
+{
+  "info": {
+    "_postman_id": "07be2d62-238b-44e9-a908-bdaa1db772f3",
+    "name": "u2w2d3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Author",
+      "item": [
+        {
+          "name": "New Request",
+          "id": "56b2e21f-3d25-40ec-b56f-d01701317388",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrlAuthor}}",
+              "host": [
+                "{{baseUrlAuthor}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "http://localhost:3023/authors",
+          "id": "f90c787c-6f82-44f9-92dd-aa75ed942fe6",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"birthDate\": \"2009-02-03\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3023/authors",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3023",
+              "path": [
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "25837fe7-b043-44e1-bb51-d3440b96d637",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3023/authors?size=10",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3023",
+              "path": [
+                "authors"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "58fe1f7f-999e-4fbf-a343-25737cd7efb9"
+    },
+    {
+      "name": "Blog",
+      "item": [
+        {
+          "name": "New Request",
+          "id": "f229f56d-fba7-4ff7-9fd6-baed4e6e4983",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"category\": \"ssss\",\n    \"title\": \"back-end\",\n    \"content\": \"Human\",\n    \"readingTime\": 9,\n    \"author\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrlBlog}}",
+              "host": [
+                "{{baseUrlBlog}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "b035576e-7cfa-4331-a2e1-0b44d7820acc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "6e022091-9264-464a-9df4-9b89af52a9d7"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import alessioceccarini.u2w2d3.exceptions.NotFoundEception;
 import alessioceccarini.u2w2d3.payloads.AuthorDTO;
 import alessioceccarini.u2w2d3.payloads.AuthorPayload;
 import alessioceccarini.u2w2d3.repositories.AuthorRepository;
+import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,10 +23,12 @@ import java.util.UUID;
 public class AuthorService {
 
 	private final AuthorRepository authorRepository;
+	private final Cloudinary cloudinary;
 
 	@Autowired
-	public AuthorService(AuthorRepository authorRepository) {
+	public AuthorService(AuthorRepository authorRepository, Cloudinary cloudinary) {
 		this.authorRepository = authorRepository;
+		this.cloudinary = cloudinary;
 	}
 
 	//------------------------------------ G E T ----------------------------------------------
@@ -68,4 +71,14 @@ public class AuthorService {
 		return authorRepository.save(author);
 
 	}
+//
+//
+//	public Author updateAvatar(MultipartFile file, UUID authorId) {
+//		Author author = this.findAuthorById(authorId);
+//		try {
+//			Map result = cloudinary.uploader();
+//		} catch (IOException e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
 }

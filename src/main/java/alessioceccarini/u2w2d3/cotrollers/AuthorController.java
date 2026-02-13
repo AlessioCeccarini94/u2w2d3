@@ -5,10 +5,10 @@ import alessioceccarini.u2w2d3.entities.Author;
 import alessioceccarini.u2w2d3.payloads.AuthorDTO;
 import alessioceccarini.u2w2d3.payloads.AuthorPayload;
 import alessioceccarini.u2w2d3.services.AuthorService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -37,7 +37,7 @@ public class AuthorController {
 	//------------------------------------ P O S T  ----------------------------------------------
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Author saveAuthor(@RequestBody @Valid AuthorDTO authorPayload) {
+	public Author saveAuthor(@RequestBody @Validated AuthorDTO authorPayload) {
 		return this.authorService.save(authorPayload);
 	}
 
@@ -55,4 +55,10 @@ public class AuthorController {
 	public void deleteAuthor(@PathVariable UUID authorId) {
 		authorService.findAuthorById(authorId);
 	}
+
+	//------------------------------------- P A T C H ----------------------------------------------
+
+//	@PatchMapping({"/{authorsId}/avatar"})
+//	public
+//}
 }

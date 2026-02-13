@@ -30,6 +30,12 @@ public class ErrorsHandle {
 		return new ErrorsDTO("Not Found ", LocalDate.now());
 	}
 
+	@ExceptionHandler(RuntimeException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public ErrorsDTO handleRuntimeException() {
+		return new ErrorsDTO("Problemi interni", LocalDate.now());
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
